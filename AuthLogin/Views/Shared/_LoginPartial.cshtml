@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using AuthLogin.Areas.Identity.Data
+
+@inject SignInManager<AuthLoginUser> SignInManager
+@inject UserManager<AuthLoginUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="nav-item mx-0 mx-lg-1">
+        <a id="manage" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+    </li>
+    <li class="nav-item mx-0 mx-lg-1">
+        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button id="logout" type="submit" class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger">Logout</button>
+        </form>
+    </li>
+}
+
+
